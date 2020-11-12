@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --header-height: 4rem;
+  --primary-color: #fbff12;
+  --cubic-bezier: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#root,
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a,
+a:visited {
+  color: blue;
+}
+
+input {
+  outline: none;
+  border: 2px solid #aaa;
+  padding: 1rem;
+  transition: all 0.285s var(--cubic-bezier);
+
+  &:hover,
+  &:focus {
+    border: 2px solid;
+    box-shadow: 5px 5px var(--primary-color);
+  }
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 1rem;
+  background: black;
+  color: white;
+  cursor: pointer;
+
+  &.primary {
+    border: 2px solid;
+    background: var(--primary-color);
+    color: black;
+  }
+
+  &.outline {
+    border: 2px solid;
+    background: white;
+    color: black;
+  }
+
+  &.icon {
+    height: 2rem;
+    width: 2rem;
+    padding: 0;
+    text-align: center;
+    line-height: 2rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+
+  &.title {
+    background: black;
+    color: white;
+    padding: 0.5rem;
+  }
+}
+
+.p1 {
+  padding: 1rem;
+}
+
+.ph {
+  padding: 0.5rem;
+}
+
+.mr1 {
+  margin-right: 1rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.separator {
+  height: 2px;
+  width: calc(100% - 2rem * 2);
+  margin: 1rem auto;
+  background-color: #000;
+}
