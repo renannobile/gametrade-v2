@@ -1,14 +1,20 @@
-import Layout from "components/Layout";
+import DefaultLayout from "components/Layout";
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route as BaseRoute } from "react-router-dom";
 
-export default ({ component: Component, ...rest }) => (
-  <Route
+const Route = ({
+  component: Component,
+  layout: Layout = DefaultLayout,
+  ...rest
+}) => (
+  <BaseRoute
     {...rest}
     render={(props) => (
-      <Layout {...props}>
+      <Layout>
         <Component {...props} />
       </Layout>
     )}
   />
 );
+
+export default Route;

@@ -1,5 +1,5 @@
 import Flex from "components/Flex";
-import React, { useState } from "react";
+import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -12,8 +12,13 @@ const Logo = styled.h1`
   margin-top: 0;
 `;
 
+const SearchWrapper = styled.div`
+  width: 100%;
+  padding: 0 3rem;
+`;
+
 const Search = styled.input`
-  width: 400px;
+  width: 100%;
 `;
 
 const SearchButton = styled.button`
@@ -22,39 +27,44 @@ const SearchButton = styled.button`
   right: 0.75rem;
 `;
 
-export default () => {
+const Home = () => {
   const history = useHistory();
-  const [searchText, setSearchText] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    history.push(`/search?q=${searchText}`);
+
+    const searchText = e.target.searchText.value;
+
+    if (searchText) {
+      history.push(`/search?q=${searchText}`);
+    }
   };
 
   return (
     <Flex
-      style={{ minHeight: "100vh" }}
+      fullHeight
       justifyContent="center"
       alignItems="center"
       flexWrap="nowrap">
-      <div>
+      <SearchWrapper>
         <Logo>Gametrade</Logo>
 
-        <div className="relative">
+        <div style={{ position: "relative" }}>
           <form onSubmit={handleSubmit}>
             <Search
-              value={searchText}
-              onChange={({ target: { value } }) => setSearchText(value)}
-              placeholder="Find the game you love"
+              name="searchText"
+              placeholder="Find the game you want"
               autoFocus
             />
+
             <SearchButton type="submit" className="icon primary">
               <FaSearch />
             </SearchButton>
           </form>
         </div>
-      </div>
+      </SearchWrapper>
     </Flex>
   );
 };
+
+export default Home;

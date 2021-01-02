@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./Header";
+import Header from "components/Header";
 
 const Main = styled.main`
   height: 100%;
+  padding-top: var(--header-height);
 `;
 
-export default ({ children }) => (
+const Layout = ({ children }) => (
   <>
-    {/* <Header /> */}
+    <Header />
     <Main>{children}</Main>
   </>
 );
+
+export default Layout;

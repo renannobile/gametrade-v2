@@ -5,10 +5,10 @@ export const DO_SEARCH = `${PREFIX}/DO_SEARCH`;
 export const SEARCH_SUCCESS = `${PREFIX}/SEARCH_SUCCESS`;
 export const SEARCH_ERROR = `${PREFIX}/SEARCH_ERROR`;
 
-export const doSearch = (searchText) => ({
+export const doSearch = (query) => ({
   type: DO_SEARCH,
   payload: {
-    searchText,
+    query,
   },
 });
 
@@ -27,17 +27,17 @@ export const onSearchError = (error) => ({
 });
 
 const initialState = {
-  searchText: "",
+  query: "",
   results: [],
   loading: false,
   error: false,
 };
 
-export default (state = initialState, { type, payload }) => {
+const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case DO_SEARCH:
       return {
-        searchText: payload.searchText,
+        query: payload.query,
         results: [],
         loading: true,
         error: false,
@@ -67,3 +67,5 @@ export const resultsSelector = createSelector(
   searchSelector,
   ({ results }) => results
 );
+
+export default reducer;

@@ -1,23 +1,25 @@
-import Flex from "components/Flex";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { FaSearch } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { doSearch } from "store/search";
-import { useParams } from "react-router-dom";
+import Container from "components/Container";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { doSearch, resultsSelector } from "store/search";
+import Results from "./Results";
 
-
-export default () => {
+const Search = () => {
   const dispatch = useDispatch();
-  const params = useParams();
+  const results = useSelector(resultsSelector);
+  const params = new URLSearchParams(useLocation().search);
+  const q = params.get("q");
 
   useEffect(() => {
-    dispatch(doSearch(params.q));
-  });
+    dispatch(doSearch(q));
+  }, [dispatch, q]);
 
   return (
-    <Flex>
-      <h2>Search</h2>
-    </Flex>
+    <Container>
+      <Results results={results} />
+    </Container>
   );
 };
+
+export default Search;
